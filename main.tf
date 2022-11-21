@@ -1,8 +1,11 @@
 data "terraform_remote_state" "network" {
-  backend = "atlas"
+  backend = "remote"
 
   config = {
-    name = "${var.org}/${var.workspace_name}"
+    organization = var.org
+    workspaces = {
+      name = var.workspace_name
+    }
   }
 }
 
