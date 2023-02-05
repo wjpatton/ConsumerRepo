@@ -59,8 +59,7 @@ resource "aws_instance" "web" {
 lifecycle {
     postcondition {
       condition     = self.ami == data.aws_ami.jammy.id
-      error_message = "Must use the latest available version of Ubuntu,
-        ${data.aws_ami.jammy.id}."
+      error_message = "Must use the latest available version of Ubuntu - ${data.aws_ami.jammy.id}."
     }
   }
   }
