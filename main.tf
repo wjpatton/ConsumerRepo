@@ -54,14 +54,12 @@ resource "aws_instance" "web" {
     Name  = "ProdCon - ${var.environment} - Instance"
     owner = "Solutions Engineer"
     ttl   = "1"
-
-
-lifecycle = {
-    postcondition = {
+  }
+  lifecycle {
+    postcondition {
       condition = self.ami == data.aws_ami.jammy.id
       error_message = "Must use the latest available version of Ubuntu - ${data.aws_ami.jammy.id}."
     }
-  }
   }
 }
 
